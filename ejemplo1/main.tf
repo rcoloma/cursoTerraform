@@ -33,6 +33,8 @@ resource "docker_container" "contenedor-ubuntu" {
         container_path  = volumes.value["container_path"]
         read_only       = volumes.value["read_only"]
         //volume_name     = contains(keys(volumes), "volume_name") ? "testo" : "vacio"
+        volume_name     = keys(volumes)[0]
+        
     }
   }
   command   = ["bash" , "-c", "sleep 1m"]
