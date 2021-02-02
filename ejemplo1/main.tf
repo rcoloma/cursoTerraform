@@ -27,18 +27,15 @@ HOST
 /home/ubuntu/environment/cursoTerraform > /cursoTerraform
 /home/ubuntu/environment/ivan > /ivan
 */ 
-  volumes = {
-    from_container  = "mi_contenedor_ubuntu"
+  volumes {
     host_path       = "/home/ubuntu/environment/cursoTerraform"
-    volume_name     = "cursoTerraform"
     container_path  = "/cursoTerraform"
     read_only       = true
-    }
-    volumes = {
-    from_container  = "mi_contenedor_ubuntu"
+  }
+  volumes {
     host_path       = "/home/ubuntu/environment/ivan"
-    volume_name     = "ivan"
     container_path  = "/ivan"
     read_only       = true
     }
+  command   = ["bash" , "-c", "sleep 1m"]
 }
