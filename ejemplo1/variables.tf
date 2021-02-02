@@ -20,6 +20,7 @@ variable "volumenes" {
             read_only       = true
         },
         {
+            volumen_name    = "vol_ivan"
             host_path       = "/home/ubuntu/environment/ivan"
             container_path  = "/ivan"
             read_only       = true
