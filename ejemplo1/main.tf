@@ -20,22 +20,20 @@ resource "docker_image" "imagen-ubuntu" {
 resource "docker_container" "contenedor-ubuntu" {
   name      = "mi_contenedor_ubuntu"
   image     = docker_image.imagen-ubuntu.latest
-  logs      = true
   /*
-2 volumenes dentro del contenedor:
-HOST
-/home/ubuntu/environment/cursoTerraform > /cursoTerraform
-/home/ubuntu/environment/ivan > /ivan
-*/ 
-  volumes {
-    host_path       = "/home/ubuntu/environment/cursoTerraform"
-    container_path  = "/cursoTerraform"
-    read_only       = true
-  }
-  volumes {
-    host_path       = "/home/ubuntu/environment/ivan"
-    container_path  = "/ivan"
-    read_only       = true
+    2 volumenes dentro del contenedor:
+    HOST
+    /home/ubuntu/environment/cursoTerraform > /cursoTerraform
+    /home/ubuntu/environment/ivan > /ivan
+  */
+  dynamic "volumes" {
+    for_each = var.volumenes
+    content {
+        host_path       = volumes.value["host_path"]
+        container_path  = volumes.value["container_path"]
+        read_only       = volumes.value["read_only"]
     }
+  }
   command   = ["bash" , "-c", "sleep 1m"]
+  logs      = true
 }
