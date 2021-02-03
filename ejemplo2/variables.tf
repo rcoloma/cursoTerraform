@@ -41,4 +41,19 @@ variable "contenedores_muy_diferentes" {
             host_path       = "/home/ubuntu/environment/ivan"
         }
     }
-} 
+}
+
+variable "lista_contenedores" {
+    description = "Contendores nginx"
+    type = list(map(string))
+    default = [
+        {
+            nombre      = "Blue"
+            puerto      = "8017"
+        },
+        {
+            nombre      = "Green"
+            puerto      = "8018"
+        }
+    ]
+}
