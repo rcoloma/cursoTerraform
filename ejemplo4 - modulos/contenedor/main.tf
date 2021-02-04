@@ -2,9 +2,8 @@
 
 terraform {
     required_providers {
-        docker = {
-            source = "kreuzwerker/docker"
-            #Le estoy diciendo que se traiga el plugin de docker
+        aws = {
+            source = "hashicorp/aws"
         }
     }
 }
