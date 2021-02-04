@@ -60,16 +60,12 @@ resource "docker_container" "contenedores-nginx-diferentes-2" {
 */
 
 resource "docker_container" "contenedores-nginx-diferentes-2" {
-  for_each = var.contenedores_muy_diferentes
+  count = length(var.lista_contenedores)
   # La variable each me da: each.key y un each.value
-  name  = each.key
+  name  = var.lista_contenedores[count.index].nombre
   image = docker_image.imagen-nginx.latest
   ports {
     internal = 80
-    external = each.value["puerto"]
-  }
-  volumes {
-      host_path         = each.value["host_path"]
-      container_path    = each.value["container_path"]
+    external = var.lista_contenedores[count.index]["puerto"]
   }
 }
