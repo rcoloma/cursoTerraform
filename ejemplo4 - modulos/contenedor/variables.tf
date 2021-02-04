@@ -12,6 +12,10 @@ variable "version_imagen" {
 variable "nombre_contenedor" {
     description = "Nombre del contenedor que voy a generar"
     type        = string
+    validation {
+        condition       = length(var.nombre_contenedor) > 4 #&& ||
+        error_message   = "Debe suministrar un nombre de contenedor con al menos 5 caracteres."
+    }
 }
 
 variable "puertos_contenedor" {
