@@ -6,13 +6,13 @@
     # Dónde (zona) eu-west-1
 
 
-terraform {
+/*terraform {
     required_providers {
         aws = {
             source = "hashicorp/aws"
         }
     }
-}
+}*/
 
 module "awsMaquina" {
   source                = "./maquina"

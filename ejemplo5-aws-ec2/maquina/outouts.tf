@@ -3,7 +3,14 @@ output "ip_publica" {
 }
 
 output "tamano_disco" {
-    value = aws_instance.RamonMachine.root_block_device.0.volume_size
+    //value = aws_instance.RamonMachine.root_block_device.0.volume_size
+    value = aws_instance.RamonMachine.root_block_device[0].volume_size
+    
+    /*
+    
+    value = [for disco in aws_instance.RamonMachine.root_block_device : disco.volume_size]
+    
+    */
 }
 
 /*
